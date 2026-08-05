@@ -61,29 +61,29 @@ box-shadow:inset 28px 8px 80px #14dfff52,inset -35px -20px 70px #000b,0 0 28px #
 <section class="final"><div class="wrap"><div style="font-size:36px;color:var(--cyan)">✦</div><h2>Почніть використовувати<br>ChatGPT <span>на свою користь</span></h2><p>Перший корисний результат — уже на першому уроці.</p><a class="cta" href="#price">Почати навчання — 490 грн <b>→</b></a></div></section>
 <footer><div class="wrap footer"><div class="logo"><span class="mark"><b>✦</b></span>ChatGPT з нуля</div><span>Практичний курс для життя, роботи та бізнесу</span><span>© 2026</span></div></footer>
 <script>
-+const checkoutButton = document.querySelector('[data-checkout]');
-+const payStatus = document.querySelector('.pay-status');
-+
-+checkoutButton.addEventListener('click', async (event) => {
-+  event.preventDefault();
-+  if (checkoutButton.getAttribute('aria-disabled') === 'true') return;
-+  checkoutButton.setAttribute('aria-disabled', 'true');
-+  checkoutButton.firstChild.textContent = 'Створюємо рахунок… ';
-+  payStatus.textContent = '';
-+
-+  try {
-+    const response = await fetch('https://chatgptznulia-payments.vercel.app/api/create-invoice', {
-+      method: 'POST',
-+      headers: { 'Content-Type': 'application/json' }
-+    });
-+    const data = await response.json();
-+    if (!response.ok || !data.pageUrl) throw new Error('invoice');
-+    window.location.href = data.pageUrl;
-+  } catch {
-+    checkoutButton.removeAttribute('aria-disabled');
-+    checkoutButton.firstChild.textContent = 'Придбати курс — 490 грн ';
-+    payStatus.textContent = 'Не вдалося відкрити оплату. Спробуйте ще раз або напишіть у підтримку.';
-+  }
-+});
-+</script>
+const checkoutButton = document.querySelector('[data-checkout]');
+const payStatus = document.querySelector('.pay-status');
+
+checkoutButton.addEventListener('click', async (event) => {
+  event.preventDefault();
+  if (checkoutButton.getAttribute('aria-disabled') === 'true') return;
+  checkoutButton.setAttribute('aria-disabled', 'true');
+  checkoutButton.firstChild.textContent = 'Створюємо рахунок… ';
+  payStatus.textContent = '';
+
+  try {
+    const response = await fetch('https://chatgptznulia-payments.vercel.app/api/create-invoice', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    });
+    const data = await response.json();
+    if (!response.ok || !data.pageUrl) throw new Error('invoice');
+    window.location.href = data.pageUrl;
+  } catch {
+    checkoutButton.removeAttribute('aria-disabled');
+    checkoutButton.firstChild.textContent = 'Придбати курс — 490 грн ';
+    payStatus.textContent = 'Не вдалося відкрити оплату. Спробуйте ще раз або напишіть у підтримку.';
+  }
+});
+</script>
 +</body></html>
