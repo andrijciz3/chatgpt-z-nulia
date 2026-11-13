@@ -82,16 +82,16 @@ function aiMessage(message){const x=E('aiStatus');x.textContent=message;x.classL
 function aiTriangle(s){
  if(!/трикутн|рівносторонн/.test(s))return false;
  const sb=document.querySelector('[data-shape="triangle"]');document.querySelector('[data-mode="sheet"]').click();sb.click();
- const side=s.match(/(?:кожн\w*\s*(?:ребр\w*|сторон\w*)\s*(?:довжин\w*)?\s*|сторон\w*\s*|ребр\w*\s*)(\d+(?:\.\d+)?)\s*мм/)||s.match(/трикутн\w*\s*(\d+(?:\.\d+)?)\s*мм/);
+ const side=s.match(/(?:ребр[а-яіїєґ]*|сторон[а-яіїєґ]*).{0,35}?(\d+(?:\.\d+)?)\s*мм/)||s.match(/трикутн[а-яіїєґ]*.{0,25}?(\d+(?:\.\d+)?)\s*мм/);
  if(side)E('triSide').value=side[1];
  const dia=s.match(/(?:отвір|отвори|отворів)\s*(?:діаметр\w*|Ø|по)?\s*(\d+(?:\.\d+)?)\s*мм/)||s.match(/(?:діаметр\w*|Ø)\s*(\d+(?:\.\d+)?)\s*мм/);
  if(dia)E('triHole').value=dia[1];
- const off=s.match(/(?:на\s*)?відстан\w*\s*(\d+(?:\.\d+)?)\s*мм/);
+ const off=s.match(/(?:на\s*)?відстан[а-яіїєґ]*\s*(\d+(?:\.\d+)?)\s*мм/);
  if(off)E('triOffset').value=off[1];
- const rad=s.match(/(?:радіус\w*|\bR\s*)(\d+(?:\.\d+)?)\s*мм/i);
+ const rad=s.match(/(?:радіус[а-яіїєґ]*|\bR\s*)(\d+(?:\.\d+)?)\s*мм/i);
  if(rad)E('triRadius').value=rad[1];
  if(/нержав/.test(s))E('mat').value='inox';else if(/алюм/.test(s))E('mat').value='al';else if(/стал/.test(s))E('mat').value='steel';
- const thick=s.match(/товщин\w*\s*(\d+(?:\.\d+)?)\s*мм/);if(thick&&[...E('t').options].some(o=>+o.value===+thick[1]))E('t').value=thick[1];
+ const thick=s.match(/товщин[а-яіїєґ]*\s*(\d+(?:\.\d+)?)\s*мм/);if(thick&&[...E('t').options].some(o=>+o.value===+thick[1]))E('t').value=thick[1];
  E('hn').value='3';E('hd').value=E('triHole').value;
  calc();
  let t=triangleData();
