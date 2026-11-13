@@ -88,7 +88,7 @@ function aiTriangle(s){
  if(dia)E('triHole').value=dia[1];
  const off=s.match(/(?:на\s*)?відстан[а-яіїєґ]*\s*(\d+(?:\.\d+)?)\s*мм/);
  if(off)E('triOffset').value=off[1];
- const rad=s.match(/(?:радіус[а-яіїєґ]*|\bR\s*)(\d+(?:\.\d+)?)\s*мм/i);
+ const rad=s.match(/(?:радіус[а-яіїєґ]*|\bR)\s*(\d+(?:\.\d+)?)\s*мм/i);
  if(rad)E('triRadius').value=rad[1];
  if(/нержав/.test(s))E('mat').value='inox';else if(/алюм/.test(s))E('mat').value='al';else if(/стал/.test(s))E('mat').value='steel';
  const thick=s.match(/товщин[а-яіїєґ]*\s*(\d+(?:\.\d+)?)\s*мм/);if(thick&&[...E('t').options].some(o=>+o.value===+thick[1]))E('t').value=thick[1];
